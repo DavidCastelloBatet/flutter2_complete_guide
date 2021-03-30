@@ -1,11 +1,45 @@
 import 'package:flutter/material.dart';
 
+import './question.dart';
+import './answer.dart';
+
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  int _questionIndex = 0;
+
+  void _answerQuestion() {
+    setState(() {
+      _questionIndex++;
+    });
+    print(_questionIndex);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    List<String> questions = [
+      'What\'s your favorite color ?',
+      'What\'s your favorite animal ?',
+    ];
     return MaterialApp(
-      home: Text('Hola'),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Flutter Complete Guide'),
+        ),
+        body: Column(
+          children: <Widget>[
+            Question(questions[_questionIndex]),
+            Answer(_answerQuestion),
+            Answer(_answerQuestion),
+            Answer(_answerQuestion),
+          ],
+        ),
+      ),
     );
   }
 }
