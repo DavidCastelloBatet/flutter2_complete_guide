@@ -57,12 +57,19 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
+  void _resetResults() {
+    setState(() {
+      _totalScore = 0;
+      _questionIndex = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Flutter Complete Guide'),
+          title: Text('New Buttons Flutter 2'),
         ),
         body: _questionIndex < _questions.length
             ? Quiz(
@@ -70,7 +77,7 @@ class _MyAppState extends State<MyApp> {
                 questionIndex: _questionIndex,
                 questions: _questions,
               )
-            : Result(_totalScore),
+            : Result(_totalScore, _resetResults),
       ),
     );
   }
